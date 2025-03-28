@@ -7,7 +7,6 @@ from app.models.wallet import WalletRequest
 from app.schemas.wallet import WalletInfo, WalletResponse, PaginationParams
 from app.services.tron import TronService
 
-# Create database tables
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="TRON Wallet Info Service")

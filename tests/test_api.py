@@ -8,7 +8,7 @@ from app.main import app
 from app.database import Base, get_db
 
 SQLALCHEMY_DATABASE_URL = "sqlite://"
-TEST_TRON_ADDRESS = "TWd4WrZ9wn84f5x1hZhL4DHvk738ns5jwb"  # Тестовый адрес в сети Nile
+TEST_TRON_ADDRESS = "TWd4WrZ9wn84f5x1hZhL4DHvk738ns5jwb"
 
 engine = create_engine(
     SQLALCHEMY_DATABASE_URL,
@@ -47,13 +47,11 @@ def test_get_wallet_info():
 
 def test_get_wallet_history():
     with TestClient(app) as client:
-        # Сначала создаем запись
         client.post(
             "/wallet",
             params={"wallet_address": TEST_TRON_ADDRESS}
         )
         
-        # Затем получаем историю
         response = client.get("/wallet/history")
         assert response.status_code == 200
         data = response.json()
